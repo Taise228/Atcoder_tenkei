@@ -1,4 +1,5 @@
 import numpy as np
+import bisect
 
 
 def angle(centre, right, left):
@@ -40,12 +41,32 @@ def main():
     # calculate the maximum angle of three points
     max_angle = 0
     for i in range(N):
-        for j in range(i + 1, N):
-            for k in range(j + 1, N):
-                angle_deg_1 = angle(points[i], points[j], points[k])
-                angle_deg_2 = angle(points[j], points[k], points[i])
-                angle_deg_3 = angle(points[k], points[i], points[j])
-                max_angle = max(max_angle, angle_deg_1, angle_deg_2, angle_deg_3)
+        centre = points[i]
+        hor_angles = []
+
+        for j in range(N):
+            if i == j:
+                continue
+            if points[j][1] >= centre[1]:
+                hor_angles.append(angle(centre, points[j], np.array([centre[0] + 1, centre[1]])))
+            else:
+                hor_angles.append(360 - angle(centre, points[j], np.array([centre[0] + 1, centre[1]])))
+
+        hor_angles.sort()
+
+        for j in range(N - 1):
+            angle_1 = hor_angles[j]
+            opp_angle = angle_1 + 180 if angle_1 < 180 else angle_1 - 180
+            opp_ind = bisect.bisect_left(hor_angles, opp_angle)
+            if opp_ind == len(hor_angles) or opp_ind == 0:
+                ith_max_angle = max(hor_angles[-1] - angle_1, angle_1 - hor_angles[0])
+            else:
+                if angle_1 < 180:
+                    ith_max_angle = max(360 - (hor_angles[opp_ind] - angle_1), hor_angles[opp_ind - 1] - angle_1)
+                else:
+                    ith_max_angle = max(angle_1 - hor_angles[opp_ind], 360 - (angle_1 - hor_angles[opp_ind - 1]))
+
+            max_angle = max(max_angle, ith_max_angle)
 
     print(max_angle)
 
