@@ -59,7 +59,15 @@ def main():
             opp_angle = angle_1 + 180 if angle_1 < 180 else angle_1 - 180
             opp_ind = bisect.bisect_left(hor_angles, opp_angle)
             if opp_ind == len(hor_angles) or opp_ind == 0:
-                ith_max_angle = max(hor_angles[-1] - angle_1, angle_1 - hor_angles[0])
+                if hor_angles[-1] - angle_1 > 180:
+                    cand_1 = 360 - (hor_angles[-1] - angle_1)
+                else:
+                    cand_1 = hor_angles[-1] - angle_1
+                if angle_1 - hor_angles[0] > 180:
+                    cand_2 = 360 - (angle_1 - hor_angles[0])
+                else:
+                    cand_2 = angle_1 - hor_angles[0]
+                ith_max_angle = max(cand_1, cand_2)
             else:
                 if angle_1 < 180:
                     ith_max_angle = max(360 - (hor_angles[opp_ind] - angle_1), hor_angles[opp_ind - 1] - angle_1)
