@@ -1,5 +1,5 @@
-import numpy as np
 import bisect
+import math
 
 
 def angle(centre, right, left):
@@ -17,16 +17,16 @@ def angle(centre, right, left):
         (float): Angle degree of right-centre-left.
     """
 
-    vec_1 = right - centre
-    vec_2 = left - centre
+    vec_1 = [right[0] - centre[0], right[1] - centre[1]]
+    vec_2 = [left[0] - centre[0], left[1] - centre[1]]
 
-    length_1 = np.linalg.norm(vec_1)
-    length_2 = np.linalg.norm(vec_2)
-    inner_product = np.dot(vec_1, vec_2)
+    length_1 = math.sqrt(vec_1[0] ** 2 + vec_1[1] ** 2)
+    length_2 = math.sqrt(vec_2[0] ** 2 + vec_2[1] ** 2)
+    inner_product = vec_1[0] * vec_2[0] + vec_1[1] * vec_2[1]
     cos = inner_product / (length_1 * length_2)
 
-    rad = np.arccos(cos)
-    deg = np.rad2deg(rad)
+    rad = math.acos(cos)
+    deg = math.degrees(rad)
 
     return deg
 
@@ -36,7 +36,7 @@ def main():
     points = []
     for _ in range(N):
         x, y = map(int, input().split())
-        points.append(np.array([x, y]))
+        points.append([x, y])
 
     # calculate the maximum angle of three points
     max_angle = 0
@@ -48,9 +48,9 @@ def main():
             if i == j:
                 continue
             if points[j][1] >= centre[1]:
-                hor_angles.append(angle(centre, points[j], np.array([centre[0] + 1, centre[1]])))
+                hor_angles.append(angle(centre, points[j], [centre[0] + 1, centre[1]]))
             else:
-                hor_angles.append(360 - angle(centre, points[j], np.array([centre[0] + 1, centre[1]])))
+                hor_angles.append(360 - angle(centre, points[j], [centre[0] + 1, centre[1]]))
 
         hor_angles.sort()
 
