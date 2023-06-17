@@ -3,7 +3,7 @@ def binary_search(array, value):
     Args:
         array (list): sorted array
         value (int): value to find the index
-        
+
     Returns:
         index (int): array[index - 1] < value <= array[index]
     '''
@@ -78,12 +78,13 @@ def merge(data, start, mid, end):
     k = start
     for val in data_temp:
         data[k] = val
-        k = k + 1  
+        k = k + 1
+
 
 def merge_sort_b(data, start, end):
     if start >= end:
         return
-    
+
     mid = (start + end) // 2
     merge_sort_b(data, start, mid)
     merge_sort_b(data, mid + 1, end)

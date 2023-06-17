@@ -9,7 +9,6 @@ def rem(former, left, right):
             rem(former + "(", left-1, right)
 
 
-
 N = int(input())
 
 if N % 2 != 0:

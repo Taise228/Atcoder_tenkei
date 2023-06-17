@@ -17,5 +17,5 @@ if __name__ == '__main__':
                     optimal = char + optimal[:change] + optimal[change+1:]
                     break
                 change += 1
-    
+
     print(optimal)

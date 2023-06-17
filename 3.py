@@ -1,11 +1,11 @@
-from collections import defaultdict
 import time
+from collections import defaultdict
 
 N = int(input())
 
 start = time.time()
 
-al = defaultdict(list)   #adjacency list
+al = defaultdict(list)   # adjacency list
 
 for _ in range(N-1):
     a, b = map(int, input().split())
@@ -14,12 +14,12 @@ for _ in range(N-1):
 
 print("1", time.time() - start)
 
-#spanning tree に辺を一つ加えてできるcycleの中で一番長いものの長さを求める
-#まず任意に頂点をとる。その末端から一番遠いところ(これは末端)が、一番長いcycleに含まれる
+# spanning tree に辺を一つ加えてできるcycleの中で一番長いものの長さを求める
+# まず任意に頂点をとる。その末端から一番遠いところ(これは末端)が、一番長いcycleに含まれる
 end = 1
 
-#verted end からの距離を全ての点に対して求め、そのmaxの点を求める
-#BFS
+# verted end からの距離を全ての点に対して求め、そのmaxの点を求める
+# BFS
 cost = [-1 for _ in range(N)]
 seen = [False for _ in range(N)]
 qu = [end]
@@ -35,7 +35,7 @@ while len(qu) != 0:
         if cost[adj-1] == -1:
             cost[adj-1] = cost[vertex-1] + 1
         qu.append(adj)
-        
+
 max_vertex = 1
 for i in range(1, N):
     if cost[i] > cost[max_vertex-1]:
