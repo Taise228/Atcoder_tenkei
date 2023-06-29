@@ -1,13 +1,14 @@
 MOD = 10 ** 9 + 7
 
+
 def modpow(a, b, m):
     """compute a^b mod m in O(log b)
-    
+
     Args:
         a (int): base
         b (int): exponent
         m (int): divisor
-        
+
     Returns:
         int: a^b mod m
     """
@@ -25,7 +26,7 @@ def modpow(a, b, m):
 def modinv(a, m):
     """compute a^-1 mod m in O(log m)
     a^-1 mod m = a^(m - 2) mod m
-    
+
     Args:
         a (int): base
         m (int): divisor
@@ -41,7 +42,7 @@ def fact_arr(n):
 
     Args:
         n (int): the maximum number of factorial
-        
+
     Returns:
         list: [1!, 2!, ..., n!] mod MOD
     """
@@ -53,7 +54,7 @@ def fact_arr(n):
 
 def inv_fact_arr(n):
     """return [1!^-1, 2!^-1, ..., n!^-1] mod MOD
-    
+
     Args:
         n (int): the maximum number of factorial
 
