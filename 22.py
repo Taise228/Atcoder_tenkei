@@ -1,6 +1,6 @@
 def gcd(a, b):
     """find the greatest common divisor of a and b
-    
+
     Args:
         a (int): a number
         b (int): another number
@@ -12,11 +12,11 @@ def gcd(a, b):
         return a
     else:
         return gcd(b, a % b)
-    
+
 
 def gcd_list(numbers):
     """find the greatest common divisor of a list of numbers
-    
+
     Args:
         numbers (list): a list of numbers
 
@@ -36,7 +36,7 @@ def main():
 
     count = (A // gcd - 1) + (B // gcd - 1) + (C // gcd - 1)
     print(count)
-    
+
 
 if __name__ == '__main__':
     main()
