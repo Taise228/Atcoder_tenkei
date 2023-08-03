@@ -53,8 +53,8 @@ def main():
     # (j is represented as a binary number)
 
     valid_patterns = []
-    for l in range(2 ** W):
-        i = l
+    for p in range(2 ** W):
+        i = p
         # check if i does not have a successive 1 in the binary representation
         i_patterns = []
         while i > 0:
@@ -69,7 +69,7 @@ def main():
                 valid = False
                 break
         if valid:
-            valid_patterns.append(l)
+            valid_patterns.append(p)
 
     # initialize
     for j in valid_patterns:
