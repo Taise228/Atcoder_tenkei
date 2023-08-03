@@ -11,7 +11,7 @@ def check(log, i, j):
     Returns:
         bool: True if the cell is available
     """
-    dirs = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+    dirs = [(-1, -1), (-1, 0), (-1, 1), (0, -1)]
     for dir in dirs:
         x = i + dir[0]
         y = j + dir[1]
