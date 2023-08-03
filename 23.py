@@ -21,7 +21,7 @@ def check(log, i, j):
 
 
 def backtrack_search(C, log, i, j, H, W):
-    while C[i][j] == '#':
+    while (C[i][j] == '#') or (check(log, i, j) is False):
         j += 1
         if j == W:
             i += 1
